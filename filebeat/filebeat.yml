@@ -1,0 +1,10 @@
+filebeat.inputs:
+- type: container
+  paths:
+  - '/var/lib/docker/containers/*/*.log'
+
+output.kafka:
+  hosts: ["kafka-deployment:9092"]
+  topic: "logs"
+  codec.format:
+    string: '%{[@timestamp]} %{[message]}'
